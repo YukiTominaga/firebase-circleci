@@ -1,10 +1,9 @@
 version: 2.1
 jobs:
-  qa-job:
+  get-token:
     working_directory: ~/workdir
     docker:
       - image: google/cloud-sdk:alpine
-      - image: gcr.io/cloud-builders/yarn
     steps:
       - checkout
       - run:
@@ -16,14 +15,33 @@ jobs:
           command: gcloud auth activate-service-account tokencreator@ca-tominaga.iam.gserviceaccount.com  --key-file=key.json
           working_directory: ~/workdir
       - run:
+          name: export token as environment variables
+          command: export TOKEN=`gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com`
+          working_directory: ~/workdir
+  firebase-deploy:
+    working_directory: ~/workdir
+    docker:
+      - image: gcr.io/cloud-builders/yarn
+    steps:
+      - checkout
+      - run:
+          name: print token
+          command: echo ${TOKEN}
+          working_directory: ~/workdir
+      - run:
           name: yarn install
           command: yarn install
           working_directory: ~/workdir
       - run:
-          name: deploy to firebase hosting
-          command: yarn firebase --token (gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com) deploy --only hosting
+          name: firebase deploy with token
+          command: firebase --token $TOKEN deploy
           working_directory: ~/workdir
+
 workflows:
-  qa-workflow:
+  version: 2
+  deploy:
     jobs:
-      - qa-job
+      - get-token
+      - firebase-deploy:
+          requires:
+            - get-token
