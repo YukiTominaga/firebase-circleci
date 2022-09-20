@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/workdir
     docker:
       - image: google/cloud-sdk:alpine
-      - image: gcr.io/cloud-builders/yarn:16
+      - image: gcr.io/cloud-builders/yarn
     steps:
       - checkout
       - run:
