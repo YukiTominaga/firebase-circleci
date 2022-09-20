@@ -16,12 +16,12 @@ jobs:
           working_directory: ~/workdir
       - run:
           name: export token as environment variables
-          command: gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > access-token.txt
+          command: gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/access-token.txt
           working_directory: ~/workdir
       - persist_to_workspace:
-          root: /root/workdir
+          root: workspace
           paths:
-            - access-token
+            - access-token.txt
   firebase-deploy:
     working_directory: ~/workdir
     docker:
