@@ -32,7 +32,7 @@ jobs:
           at: ~/workdir
       - run:
           name: print token
-          command: export TOKEN=`cat access-token.txt` && echo $TOKEN
+          command: export TOKEN=`cat access-token.txt`
           working_directory: ~/workdir
       - run:
           name: yarn install
@@ -40,7 +40,7 @@ jobs:
           working_directory: ~/workdir
       - run:
           name: firebase deploy with token
-          command: firebase --token `cat access-token.txt` deploy
+          command: yarn firebase --token $TOKEN deploy
           working_directory: ~/workdir
 
 workflows:
