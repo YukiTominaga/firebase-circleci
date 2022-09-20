@@ -19,7 +19,7 @@ jobs:
           command: gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > access-token.txt
           working_directory: ~/workdir
       - persist_to_workspace:
-          root: workspace
+          root: /root/workdir
           paths:
             - access-token
   firebase-deploy:
