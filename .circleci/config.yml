@@ -27,9 +27,9 @@ jobs:
     docker:
       - image: node:16-alpine
     steps:
+      - checkout
       - attach_workspace:
           at: ~/workdir
-      - checkout
       - run:
           name: print token
           command: export TOKEN=`cat access-token.txt` && echo $TOKEN
