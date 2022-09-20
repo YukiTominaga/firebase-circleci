@@ -15,8 +15,8 @@ jobs:
           command: gcloud auth activate-service-account tokencreator@ca-tominaga.iam.gserviceaccount.com  --key-file=key.json
           working_directory: ~/workdir
       - run:
-          name: export token as environment variables
-          command: gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/access-token.txt
+          name: output token as a file
+          command: mkdir workspace && gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/access-token.txt
           working_directory: ~/workdir
       - persist_to_workspace:
           root: workspace
