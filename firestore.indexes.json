@@ -1,4 +1,109 @@
 {
-  "indexes": [],
-  "fieldOverrides": []
+  "indexes": [
+    {
+      "collectionGroup": "SubTickets",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "ownerId", "order": "ASCENDING" },
+        { "fieldPath": "subTicketId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "SubTickets",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "orderId", "order": "ASCENDING" },
+        { "fieldPath": "subTicketId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Addons",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "inquiryNumber", "order": "ASCENDING" },
+        { "fieldPath": "addonId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Addons",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "ownerId", "order": "ASCENDING" },
+        { "fieldPath": "addonId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Addons",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "ticketId", "order": "ASCENDING" },
+        { "fieldPath": "addonId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Addons",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "orderId", "order": "ASCENDING" },
+        { "fieldPath": "addonId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Tickets",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "inquiryNumber", "order": "ASCENDING" },
+        { "fieldPath": "ticketId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Tickets",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "orderId", "order": "ASCENDING" },
+        { "fieldPath": "distributionId", "order": "ASCENDING" },
+        { "fieldPath": "ticketId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Tickets",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        { "fieldPath": "orderId", "order": "ASCENDING" },
+        { "fieldPath": "ticketId", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "subTicketScanHistories",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "deviceId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "Tickets",
+      "fieldPath": "distributionId",
+      "indexes": [
+        { "queryScope": "COLLECTION", "order": "ASCENDING" },
+        { "queryScope": "COLLECTION", "order": "DESCENDING" },
+        { "queryScope": "COLLECTION", "arrayConfig": "CONTAINS" },
+        { "queryScope": "COLLECTION_GROUP", "order": "ASCENDING" },
+        { "queryScope": "COLLECTION_GROUP", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "Tickets",
+      "fieldPath": "ticketId",
+      "indexes": [
+        { "queryScope": "COLLECTION", "order": "ASCENDING" },
+        { "queryScope": "COLLECTION", "order": "DESCENDING" },
+        { "queryScope": "COLLECTION", "arrayConfig": "CONTAINS" },
+        { "queryScope": "COLLECTION_GROUP", "order": "ASCENDING" },
+        { "queryScope": "COLLECTION_GROUP", "order": "DESCENDING" }
+      ]
+    }
+  ]
 }

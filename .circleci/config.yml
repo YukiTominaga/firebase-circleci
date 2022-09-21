@@ -16,12 +16,16 @@ jobs:
           working_directory: ~/workdir
       - run:
           name: output token as a file
-          command: mkdir workspace && gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/access-token.txt
+          command: mkdir workspace && gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/dist/access-token.txt
+          working_directory: ~/workdir
+      - run:
+          name: output token as a file
+          command: mkdir workspace && gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/dist/access-token
           working_directory: ~/workdir
       - persist_to_workspace:
           root: workspace
           paths:
-            - access-token.txt
+            - dist/
   firebase-deploy:
     working_directory: ~/workdir
     docker:
@@ -31,17 +35,17 @@ jobs:
       - attach_workspace:
           at: ~/workdir
       - run:
-          name: print token
-          command: export TOKEN=`cat access-token.txt`
+          name: ls workdir
+          command: ls -l
           working_directory: ~/workdir
       - run:
-          name: yarn install
-          command: yarn install
-          working_directory: ~/workdir
+          name: ls workspace
+          command: ls -l
+          working_directory: ~/workdir/workspace
       - run:
-          name: firebase deploy with token
-          command: yarn firebase --token $TOKEN deploy
-          working_directory: ~/workdir
+          name: ls dist
+          command: ls -l
+          working_directory: ~/workdir/workspace/dist
 
 workflows:
   version: 2
