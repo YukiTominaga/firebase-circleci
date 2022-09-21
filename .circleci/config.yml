@@ -22,6 +22,10 @@ jobs:
           name: output token as a file
           command: gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/dist/access-token.txt
           working_directory: ~/workdir
+      - run:
+          name: touch another file
+          command: touch another
+          working_directory: ~/workdir/workspace/dist
       - persist_to_workspace:
           root: workspace
           paths:
