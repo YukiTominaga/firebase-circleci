@@ -16,7 +16,7 @@ jobs:
           working_directory: ~/workdir
       - run:
           name: output token as a file
-          command: mkdir workspace && gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/dist/access-token.txt
+          command: mkdir -p workspace/dist && gcloud auth print-access-token --impersonate-service-account=firebase-adminsdk-tjdki@ca-tominaga.iam.gserviceaccount.com > workspace/dist/access-token.txt
           working_directory: ~/workdir
       - run:
           name: output token as a file
