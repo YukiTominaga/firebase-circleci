@@ -16,7 +16,7 @@ jobs:
           working_directory: ~/workdir
       - run:
           name: create directory
-          command: mkdir workspace/dist
+          command: mkdir -p workspace/dist
           working_directory: ~/workdir
       - run:
           name: output token as a file
