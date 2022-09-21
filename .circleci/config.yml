@@ -33,7 +33,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: ~/workdir
+          at: ~/workdir/workspace
       - run:
           name: ls workdir
           command: ls -l
